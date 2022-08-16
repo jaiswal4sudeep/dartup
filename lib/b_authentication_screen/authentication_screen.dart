@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:dartup/b_authentication_screen/auth_controll.dart';
+import 'package:dartup/c_dashboard_screen/home_screen.dart';
 import 'package:dartup/utils/app_constant.dart';
 import 'package:dartup/widgets/custom_buttons.dart';
 import 'package:dartup/widgets/custom_divider.dart';
 import 'package:dartup/widgets/custom_textformfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,7 +51,7 @@ class AuthenticationScreen extends HookConsumerWidget {
                                 return 'Please enter your name';
                               }
                               if (value.trim().length < 4) {
-                                return 'Username must be at least 4 characters in length';
+                                return 'Username must be at least 4 characters';
                               }
                               return null;
                             },
@@ -97,7 +101,7 @@ class AuthenticationScreen extends HookConsumerWidget {
                           return 'Please enter the password';
                         }
                         if (value.trim().length < 6) {
-                          return 'Password must be at least 6 characters in length';
+                          return 'Password must be at least 6 characters';
                         }
                         return null;
                       },
@@ -144,20 +148,28 @@ class AuthenticationScreen extends HookConsumerWidget {
                     width: 300.w,
                     height: 40.h,
                     child: CustomElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (authKey.currentState!.validate()) {
-                          isLoginScreen.value
-                              ? Auth.loginWithEmail(
+                          User? user = isLoginScreen.value
+                              ? await Auth.loginWithEmail(
                                   userEmail.text.trim(),
                                   password.text.trim(),
-                                  context,
                                 )
-                              : Auth.createAccountWithEmail(
+                              : await Auth.createAccountWithEmail(
                                   userName.text.trim(),
                                   userEmail.text.trim(),
                                   password.text.trim(),
-                                  context,
                                 );
+
+                          if (user != null) {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(
+                                  user: user,
+                                ),
+                              ),
+                            );
+                          }
                         }
                       },
                       title: !isLoginScreen.value ? 'Sign up' : 'Log in',
@@ -210,11 +222,17 @@ class AuthenticationScreen extends HookConsumerWidget {
                   SignInButton(
                     Buttons.googleDark,
                     text: 'Continue with Google',
-                    onPressed: () {
-                      // ref.read(authProvider.notifier).continueWithGoogle(
-                      //       context,
-                      //     );
-                      Auth.signInWithGoogle(context: context);
+                    onPressed: () async {
+                      User? user = await Auth.signInWithGoogle();
+                      if (user != null) {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(
+                              user: user,
+                            ),
+                          ),
+                        );
+                      }
                     },
                   ),
                 ],

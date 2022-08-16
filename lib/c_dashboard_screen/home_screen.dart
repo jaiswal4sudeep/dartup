@@ -29,7 +29,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   String? appVersion;
   late User user;
-  String email = '';
+
   UserModel userModel = UserModel(
     displayName: '',
     email: '',
@@ -49,6 +49,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         userModel = UserModel.fromMap(
           value.data(),
         );
+        setState(() {});
       },
     );
   }
@@ -205,7 +206,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         color: AppConstant.backgroundColor,
                       ),
                       onTap: () {
-                        Auth.signInWithGoogle(context: context)
+                        Auth.signInWithGoogle()
                             .then(
                               (value) => Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
@@ -226,11 +227,122 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
           ),
-          body: Column(
-            children: const [],
+          body: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                // height: MediaQuery.of(context).size.height,
+                child: Flexible(
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 0',
+                          onTap: () {},
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 130.h,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 1',
+                          onTap: () {},
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        top: 260.h,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 2',
+                          onTap: () {},
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 390.h,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 3',
+                          onTap: () {},
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        top: 520.h,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 0',
+                          onTap: () {},
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 650.h,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 1',
+                          onTap: () {},
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        top: 780.h,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 2',
+                          onTap: () {},
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 910.h,
+                        child: ChapterIndexContainer(
+                          title: 'Chapter 3',
+                          onTap: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
         );
       },
+    );
+  }
+}
+
+class ChapterIndexContainer extends StatelessWidget {
+  const ChapterIndexContainer({
+    Key? key,
+    required this.title,
+    required this.onTap,
+  }) : super(key: key);
+
+  final String title;
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Ink(
+        width: 170.w,
+        height: 125.h,
+        decoration: BoxDecoration(
+          color: AppConstant.primaryColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  color: AppConstant.backgroundColor,
+                ),
+          ),
+        ),
+      ),
     );
   }
 }

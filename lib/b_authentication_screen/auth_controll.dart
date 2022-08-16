@@ -1,7 +1,4 @@
-// ignore_for_file: avoid_print, use_build_context_synchronously
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartup/c_dashboard_screen/home_screen.dart';
 import 'package:dartup/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -12,11 +9,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 FirebaseAuth auth = FirebaseAuth.instance;
 
 class Auth {
-  static createAccountWithEmail(
+  static Future<User?> createAccountWithEmail(
     String userName,
     String email,
     String password,
-    BuildContext context,
   ) async {
     User? user;
     try {
@@ -26,18 +22,22 @@ class Auth {
       );
       user = userCredential.user;
       user = auth.currentUser;
-      if (user != null) {
-        saveNewUserDetails(
-          userName,
-          email,
+      bool? isNewUser = userCredential.additionalUserInfo?.isNewUser;
+      if (isNewUser!) {
+        UserModel newUserData = UserModel(
+          displayName: userName,
+          email: email,
+          level: 0,
         );
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(
-              user: user!,
-            ),
-          ),
-        );
+        try {
+          FirebaseFirestore.instance.collection('users').doc(email).set(
+                newUserData.toMap(),
+              );
+        } catch (e) {
+          Fluttertoast.showToast(
+            msg: e.toString(),
+          );
+        }
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -58,32 +58,12 @@ class Auth {
         msg: e.toString(),
       );
     }
+    return user;
   }
 
-  static Future<void> saveNewUserDetails(
-    String userName,
-    String userEmail,
-  ) async {
-    UserModel newUserData = UserModel(
-      displayName: userName,
-      email: userEmail,
-      level: 0,
-    );
-    try {
-      FirebaseFirestore.instance.collection('users').doc(userEmail).set(
-            newUserData.toMap(),
-          );
-    } catch (e) {
-      Fluttertoast.showToast(
-        msg: e.toString(),
-      );
-    }
-  }
-
-  static Future<void> loginWithEmail(
+  static Future<User?> loginWithEmail(
     String email,
     String password,
-    BuildContext context,
   ) async {
     User? user;
 
@@ -93,15 +73,6 @@ class Auth {
         password: password,
       );
       user = userCredential.user;
-      if (user != null) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(
-              user: user!,
-            ),
-          ),
-        );
-      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Fluttertoast.showToast(
@@ -121,11 +92,10 @@ class Auth {
         msg: e.toString(),
       );
     }
+    return user;
   }
 
-  static Future<void> signInWithGoogle({
-    required BuildContext context,
-  }) async {
+  static Future<User?> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     bool? isNewUser;
@@ -163,15 +133,6 @@ class Auth {
               .doc(userCredential.user!.email)
               .set(newUserData.toMap());
         }
-        if (user != null && isNewUser == false) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(
-                user: user!,
-              ),
-            ),
-          );
-        }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
           Fluttertoast.showToast(
@@ -188,6 +149,7 @@ class Auth {
         );
       }
     }
+    return user;
   }
 
   static Future<void> signOut({required BuildContext context}) async {
