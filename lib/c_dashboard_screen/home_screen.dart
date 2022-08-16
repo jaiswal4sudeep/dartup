@@ -231,79 +231,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                // height: MediaQuery.of(context).size.height,
-                child: Flexible(
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 0',
-                          onTap: () {},
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        top: 130.h,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 1',
-                          onTap: () {},
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 260.h,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 2',
-                          onTap: () {},
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        top: 390.h,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 3',
-                          onTap: () {},
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 520.h,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 0',
-                          onTap: () {},
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        top: 650.h,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 1',
-                          onTap: () {},
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 780.h,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 2',
-                          onTap: () {},
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        top: 910.h,
-                        child: ChapterIndexContainer(
-                          title: 'Chapter 3',
-                          onTap: () {},
-                        ),
-                      ),
-                    ],
+              child: Column(
+                children: [
+                  ChapterIndexContainer(
+                    title: 'Chapter 0',
+                    onTap: () {},
                   ),
-                ),
+                ],
               ),
             ),
           ),

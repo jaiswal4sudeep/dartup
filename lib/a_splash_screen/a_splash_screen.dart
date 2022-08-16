@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_null_comparison
-
 import 'package:dartup/b_authentication_screen/authentication_screen.dart';
 import 'package:dartup/c_dashboard_screen/home_screen.dart';
 import 'package:dartup/utils/app_constant.dart';

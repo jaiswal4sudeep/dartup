@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:dartup/b_authentication_screen/auth_controll.dart';
 import 'package:dartup/c_dashboard_screen/home_screen.dart';
 import 'package:dartup/utils/app_constant.dart';
@@ -25,6 +23,7 @@ class AuthenticationScreen extends HookConsumerWidget {
     final isPassHidden = useState<bool>(true);
     final authKey = GlobalKey<FormState>();
     final isLoginScreen = useState<bool>(true);
+     final navigator = Navigator.of(context);
 
     return Scaffold(
       body: SafeArea(
@@ -162,7 +161,7 @@ class AuthenticationScreen extends HookConsumerWidget {
                                 );
 
                           if (user != null) {
-                            Navigator.of(context).pushReplacement(
+                            navigator.pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) => HomeScreen(
                                   user: user,
@@ -225,7 +224,7 @@ class AuthenticationScreen extends HookConsumerWidget {
                     onPressed: () async {
                       User? user = await Auth.signInWithGoogle();
                       if (user != null) {
-                        Navigator.of(context).pushReplacement(
+                        navigator.pushReplacement(
                           MaterialPageRoute(
                             builder: (context) => HomeScreen(
                               user: user,
