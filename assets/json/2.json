@@ -1,0 +1,114 @@
+{
+    "questions": [
+        {
+            "qid": 1,
+            "question": "Which one of the following is not a keyword in Dart?",
+            "options": [
+                "import",
+                "else",
+                "flutter",
+                "as"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 2,
+            "question": "Which of the following is an exit controlled loop?",
+            "options": [
+                "while loop",
+                "for loop",
+                "do-while loop",
+                "None of the above"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 3,
+            "question": " Which of the following is not a logical operator?",
+            "options": [
+                "&&",
+                "!",
+                "||",
+                "|"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 4,
+            "question": "Which of the following is not a valid Dart variable name?",
+            "options": [
+                "int number;",
+                "double rate;",
+                "int variable_count;",
+                "int $main;"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 5,
+            "question": " If addition had higher precedence than multiplication, then the value of the expression (1 + 2 * 3 + 4 * 5) would be which of the following?",
+            "options": [
+                "27",
+                "47",
+                "69",
+                "105"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 6,
+            "question": "Which one of the following is a loop construct that will always be executed once?",
+            "options": [
+                "for",
+                "while",
+                "switch",
+                "do while"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 7,
+            "question": "Which is valid expression in Dart language?",
+            "options": [
+                "int my_num = 1,000;",
+                "int my_num = 1000;",
+                "number my_num = 1000;",
+                "int my num == 1000;"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 8,
+            "question": "How many times DartUP is printed?\n\nvoid main(){\n  while(true){\n    print(\"DartUP\");\n  }\n}",
+            "options": [
+                "1 time",
+                "Compilation Error",
+                "Infinite times",
+                "Runtime Error"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 9,
+            "question": "What is output of below program?\n\nint main(){\n  int i;\n  for(i=0; i<5; ++i++){\n    print(\"Hello\");\n  }\n}",
+            "options": [
+                "Hello is printed 6 times",
+                "error: expression is not assignable",
+                "Hello is printed 5 times",
+                "Hello is printed 4 times"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 10,
+            "question": "What is output of below program?\n\nvoid main(){\n  for(; ;);\n  for(; ;);\n  print(\"Hello\");\n}",
+            "options": [
+                "Compilation Error",
+                "No output",
+                "Runtime Error",
+                "Hello is printed infinite times"
+            ],
+            "correct_answer": 2
+        }
+    ]
+}

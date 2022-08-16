@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "343251643985",
+    "project_id": "dartupapp",
+    "storage_bucket": "dartupapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343251643985:android:4fc5b8b3816cee064dd270",
+        "android_client_info": {
+          "package_name": "com.example.dartup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "343251643985-pqa1qtui81q56gaa7pq2u8n8g247h48r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS0WYkNFyTaT2bXBLB5_CM2nbLKhxnbgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "343251643985-pqa1qtui81q56gaa7pq2u8n8g247h48r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

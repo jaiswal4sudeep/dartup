@@ -1,0 +1,114 @@
+{
+    "questions": [
+        {
+            "qid": 1,
+            "question": "void main()\n{\n  int i = 3;\n  print(i++ + ++i);\n}\n\nWhat is the output of the above program?",
+            "options": [
+                "5",
+                "7",
+                "8",
+                "9"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 2,
+            "question": "void main(){\n  final int y = 10;\n  print(y);\n  y = 99;\n  print(y);\n}\n\nWhat is the output of the above program?",
+            "options": [
+                "1099",
+                "1010",
+                "9910",
+                "Error: Can't assign to the final variable 'y'."
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 3,
+            "question": "void main(){\n  final squareOfTwo = getSquareOfNumber(2);\n  print(\"SqaureOfTwo = $squareOfTwo\");\n}\nnum getSquareOfNumber(num i){\n  return i * i;\n}\n\nWhat is the output of the above program?",
+            "options": [
+                "SqaureOfTwo = 4",
+                "SqaureOfTwo = squareOfTwo",
+                "SqaureOfTwo = 2",
+                "None of the above"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 4,
+            "question": "void main(){\n  const name = \"dart\";\n  print(name);\n  name = \"flutter\";\n  print(name);\n}\n\nWhat is the output of the above program?",
+            "options": [
+                "dart",
+                "flutter",
+                "name",
+                "Can't assign to the const variable 'name'."
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 5,
+            "question": "String returnMyName(String name){\n  return \"Your name is ${name}\";\n}\nvoid main() {\n  String ans = returnMyName(\"Mr. Dart\");\n  print(ans);\n}\n\nWhat is the output of the above program?",
+            "options": [
+                "Your name is Mr. Dart",
+                "Your name is name",
+                "Integration Tests",
+                "None of the above"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 6,
+            "question": "void main(){\n  print(\"dart\");\n  main();\n}\n\nWhat will be the output of this program?",
+            "options": [
+                "Wrong statement",
+                "It will keep on printing dart",
+                "It will Print javatpoint dart",
+                "None of the above"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 7,
+            "question": "What will this program print?\nvoid main(){\n  int i = 2;{\n    int i = 4, j = 5;\n    print(i, j);\n  }\n  print(i, j);\n}",
+            "options": [
+                "92",
+                "72",
+                "112",
+                "None of the above"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 8,
+            "question": "How many times will the following loop execute?\nfor(j = 1; j <= 10; j = j-1)",
+            "options": [
+                "Forever",
+                "Never",
+                "0",
+                "1"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 9,
+            "question": "What is the result after execution of the following code if a is 10, b is 5, and c is 10?\nvoid main(){\n  int a=10,b=5,c=10;\n  if ((a > b) && (a <= c)){\n    a = a + 1;\n  }\nelse{\n    c = c+1;\n  }\n  print(a+c);\n}",
+            "options": [
+                "15",
+                "26",
+                "11",
+                "21"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 10,
+            "question": "What is the meaning of below lines?\nvoid sum (int, int);",
+            "options": [
+                "sum is function which takes int arguments",
+                "sum is a function which takes two int arguments and returns void",
+                "it will produce compilation error",
+                "Can't comment"
+            ],
+            "correct_answer": 2
+        }
+    ]
+}
