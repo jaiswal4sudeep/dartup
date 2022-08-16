@@ -147,19 +147,17 @@ class AuthenticationScreen extends HookConsumerWidget {
                       onPressed: () {
                         if (authKey.currentState!.validate()) {
                           isLoginScreen.value
-                              ? ref.read(authProvider.notifier).loginWithEmail(
-                                    userEmail.text.trim(),
-                                    password.text.trim(),
-                                    context,
-                                  )
-                              : ref
-                                  .read(authProvider.notifier)
-                                  .createAccountWithEmail(
-                                    userName.text.trim(),
-                                    userEmail.text.trim(),
-                                    password.text,
-                                    context,
-                                  );
+                              ? Auth.loginWithEmail(
+                                  userEmail.text.trim(),
+                                  password.text.trim(),
+                                  context,
+                                )
+                              : Auth.createAccountWithEmail(
+                                  userName.text.trim(),
+                                  userEmail.text.trim(),
+                                  password.text.trim(),
+                                  context,
+                                );
                         }
                       },
                       title: !isLoginScreen.value ? 'Sign up' : 'Log in',
@@ -213,9 +211,10 @@ class AuthenticationScreen extends HookConsumerWidget {
                     Buttons.googleDark,
                     text: 'Continue with Google',
                     onPressed: () {
-                      ref.read(authProvider.notifier).continueWithGoogle(
-                            context,
-                          );
+                      // ref.read(authProvider.notifier).continueWithGoogle(
+                      //       context,
+                      //     );
+                      Auth.signInWithGoogle(context: context);
                     },
                   ),
                 ],

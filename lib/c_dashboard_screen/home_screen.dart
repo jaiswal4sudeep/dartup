@@ -63,174 +63,174 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return StreamBuilder(
-        stream: getUserData(),
-        builder: (context, snapshot) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('DartUp'),
-              centerTitle: false,
-            ),
-            drawer: Drawer(
-              backgroundColor: AppConstant.backgroundColor,
-              width: width * 0.7,
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 28.r,
-                            backgroundColor: AppConstant.primaryColor,
-                            child: userModel.photoURL == null
-                                ? Text(
-                                    userModel.displayName[0].toUpperCase(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline2!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: AppConstant.backgroundColor,
-                                        ),
-                                  )
-                                : const SizedBox(),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                userModel.displayName.toString(),
-                                style: Theme.of(context).textTheme.headline3,
-                              ),
-                              Text(
-                                'Level: ${userModel.level.toString()}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline5!
-                                    .copyWith(
-                                      color: AppConstant.titlecolor
-                                          .withOpacity(0.9),
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    CustomListTile(
-                      text: 'Bookmarks',
-                      icon: Icons.home_rounded,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const BookmarkScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    CustomListTile(
-                      text: 'Leaderboard',
-                      icon: Icons.leaderboard_rounded,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const LeaderboardScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    CustomListTile(
-                      text: 'Settings',
-                      icon: Icons.settings_rounded,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SettingsScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    const CustomDivider(),
-                    CustomListTile(
-                      text: 'Share',
-                      icon: Icons.share_rounded,
-                      onTap: () {},
-                    ),
-                    CustomListTile(
-                      text: 'Rate',
-                      icon: Icons.star_rounded,
-                      onTap: () {},
-                    ),
-                    CustomListTile(
-                      text: 'Feedback',
-                      icon: Icons.feedback_rounded,
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => FeedBackScreen(
-                              displayName: userModel.displayName,
-                              photoURL: userModel.photoURL,
+      stream: getUserData(),
+      builder: (context, snapshot) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('DartUp'),
+            centerTitle: false,
+          ),
+          drawer: Drawer(
+            backgroundColor: AppConstant.backgroundColor,
+            width: width * 0.7,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 28.r,
+                          backgroundColor: AppConstant.primaryColor,
+                          child: userModel.photoURL == null
+                              ? Text(
+                                  userModel.displayName[0].toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline2!
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: AppConstant.backgroundColor,
+                                      ),
+                                )
+                              : const SizedBox(),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              userModel.displayName.toString(),
+                              style: Theme.of(context).textTheme.headline3,
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Version: $appVersion',
-                        style: Theme.of(context).textTheme.headline5,
-                      ),
-                    ),
-                    Card(
-                      color: AppConstant.primaryColor,
-                      child: ListTile(
-                        title: Text(
-                          'Log out',
-                          style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    color: AppConstant.backgroundColor,
+                            Text(
+                              'Level: ${userModel.level.toString()}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5!
+                                  .copyWith(
+                                    color:
+                                        AppConstant.titlecolor.withOpacity(0.9),
                                   ),
+                            ),
+                          ],
                         ),
-                        leading: const Icon(
-                          Icons.logout_rounded,
-                          color: AppConstant.backgroundColor,
+                      ],
+                    ),
+                  ),
+                  CustomListTile(
+                    text: 'Bookmarks',
+                    icon: Icons.home_rounded,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const BookmarkScreen(),
                         ),
-                        onTap: () {
-                          ref.read(authProvider.notifier).logOut(context).then(
-                            (value) {
-                              return Navigator.of(context).pushReplacement(
+                      );
+                    },
+                  ),
+                  CustomListTile(
+                    text: 'Leaderboard',
+                    icon: Icons.leaderboard_rounded,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LeaderboardScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  CustomListTile(
+                    text: 'Settings',
+                    icon: Icons.settings_rounded,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const SettingsScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  const CustomDivider(),
+                  CustomListTile(
+                    text: 'Share',
+                    icon: Icons.share_rounded,
+                    onTap: () {},
+                  ),
+                  CustomListTile(
+                    text: 'Rate',
+                    icon: Icons.star_rounded,
+                    onTap: () {},
+                  ),
+                  CustomListTile(
+                    text: 'Feedback',
+                    icon: Icons.feedback_rounded,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FeedBackScreen(
+                            displayName: userModel.displayName,
+                            photoURL: userModel.photoURL,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Version: $appVersion',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  ),
+                  Card(
+                    color: AppConstant.primaryColor,
+                    child: ListTile(
+                      title: Text(
+                        'Log out',
+                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                              color: AppConstant.backgroundColor,
+                            ),
+                      ),
+                      leading: const Icon(
+                        Icons.logout_rounded,
+                        color: AppConstant.backgroundColor,
+                      ),
+                      onTap: () {
+                        Auth.signInWithGoogle(context: context)
+                            .then(
+                              (value) => Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       const AuthenticationScreen(),
                                 ),
-                              );
-                            },
-                          ).onError(
-                            (error, stackTrace) => Fluttertoast.showToast(
-                              msg: 'An error occured',
-                            ),
-                          );
-                        },
-                      ),
+                              ),
+                            )
+                            .onError(
+                              (error, stackTrace) => Fluttertoast.showToast(
+                                msg: error.toString(),
+                              ),
+                            );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            body: Column(
-              children: const [],
-            ),
-          );
-        });
+          ),
+          body: Column(
+            children: const [],
+          ),
+        );
+      },
+    );
   }
 }
